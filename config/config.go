@@ -38,6 +38,7 @@ type Proxy struct {
 	ClientIPHeader        string
 	TLSHeader             string
 	TLSHeaderValue        string
+	StripPrefix           bool
 }
 
 type Runtime struct {

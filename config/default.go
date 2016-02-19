@@ -11,6 +11,7 @@ var Default = &Config{
 		Strategy:    "rnd",
 		DialTimeout: 30 * time.Second,
 		LocalIP:     LocalIPString(),
+		StripPrefix: false,
 	},
 	Registry: Registry{
 		Backend: "consul",

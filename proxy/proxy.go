@@ -49,7 +49,7 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		// To use the filtered proxy use
 		// h = newWSProxy(t.URL)
 	default:
-		h = newHTTPProxy(t.URL, p.tr)
+		h = newHTTPProxy(t.URL, p.tr, t.Path, p.cfg.StripPrefix)
 	}
 
 	start := time.Now()

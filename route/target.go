@@ -28,4 +28,8 @@ type Target struct {
 
 	// timerName is the name of the timer in the metrics registry
 	timerName string
+
+	// Path is the path prefix from a request uri
+	// (dereferenced from Route)
+	Path string
 }

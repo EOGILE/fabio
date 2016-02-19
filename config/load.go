@@ -46,6 +46,7 @@ func fromProperties(p *properties.Properties) (cfg *Config, err error) {
 		ClientIPHeader:        stringVal(p, Default.Proxy.ClientIPHeader, "proxy.header.clientip"),
 		TLSHeader:             stringVal(p, Default.Proxy.TLSHeader, "proxy.header.tls"),
 		TLSHeaderValue:        stringVal(p, Default.Proxy.TLSHeaderValue, "proxy.header.tls.value"),
+		StripPrefix:           boolVal(p, Default.Proxy.StripPrefix, "proxy.prefix.strip"),
 	}
 
 	readTimeout := durationVal(p, time.Duration(0), "proxy.readtimeout")
@@ -163,6 +164,18 @@ func durationVal(p *properties.Properties, def time.Duration, keys ...string) ti
 		return def
 	}
 	return d
+}
+
+func boolVal(p *properties.Properties, def bool, keys ...string) bool {
+	v := stringVal(p, "", keys...)
+	if v == "" {
+		return def
+	}
+	b, err := strconv.ParseBool(v)
+	if err != nil {
+		return def
+	}
+	return b
 }
 
 func dump(cfg *Config) {
